@@ -3,9 +3,11 @@ from app.models.user import User
 
 
 class Tweet(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.Unicode(280), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    id = db.Column(db.BigInteger, primary_key=True)
+    text = db.Column(db.Unicode(500), nullable=False)
+    embedding = db.Column(db.PickleType, nullable=False)
+    user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'),
+                        nullable=False)
     user = db.relationship("User", backref=db.backref('tweets', lazy=True))
 
     @staticmethod

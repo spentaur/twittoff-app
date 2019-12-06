@@ -2,9 +2,9 @@ from app.extensions import db
 
 
 class User(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.BigInteger(), primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    tweet_count = db.Column(db.Integer(), nullable=False, default=0)
+    tweet_count = db.Column(db.BigInteger(), nullable=False, default=0)
 
     @staticmethod
     def add_user(username):
