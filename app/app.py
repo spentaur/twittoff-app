@@ -5,9 +5,6 @@ import os
 from flask import Flask, render_template
 from . import settings, controllers, models
 from .extensions import db
-from dotenv import load_dotenv
-
-load_dotenv()
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 

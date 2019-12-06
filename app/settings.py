@@ -2,12 +2,9 @@
 in here."""
 
 import os
-from dotenv import load_dotenv
+from decouple import config
 
-load_dotenv()
-
-ENV = os.getenv('FLASK_ENV', default='production')
+ENV = config('FLASK_ENV', default='production')
 DEBUG = ENV == 'development'
-SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
-SECRET_KEY = os.getenv('SECRET_KEY', default='octocat')
+SQLALCHEMY_DATABASE_URI = config('DATABASE_URL')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
