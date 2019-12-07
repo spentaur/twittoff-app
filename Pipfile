@@ -33,6 +33,8 @@ Mako = "==1.0.7"
 MarkupSafe = "==1.1.0"
 SQLAlchemy = "==1.3.0"
 Werkzeug = "==0.14.1"
+python-twitter = "*"
+tqdm = "*"
 
 [requires]
 python_version = "3.7"

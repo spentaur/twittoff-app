@@ -3,7 +3,7 @@
 import os
 
 from flask import Flask, render_template
-from . import settings, controllers, models
+from . import settings, controllers
 from .extensions import db
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -34,8 +34,8 @@ def register_extensions(app):
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(controllers.home.blueprint)
-    app.register_blueprint(controllers.users.blueprint)
-    app.register_blueprint(controllers.tweets.blueprint)
+    app.register_blueprint(controllers.user.blueprint)
+    app.register_blueprint(controllers.tweet.blueprint)
     return None
 
 

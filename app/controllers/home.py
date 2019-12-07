@@ -7,6 +7,6 @@ blueprint = Blueprint('home', __name__)
 
 @blueprint.route('/')
 def index():
-    users = User.get_ten_newest()
+    users = User.get_newest()
     tweets = Tweet.get_ten_newest()
     return render_template('home/index.html', users=users, tweets=tweets)

@@ -44,46 +44,4 @@
     </div>
 </div>
 
-<hr>
-
-<div class="card-columns my-5">
-    <div class="card">
-        <h5 class="card-header">Add Tweet</h5>
-        <div class="card-body">
-            <form action="/tweet/new" method="post">
-                <label for="sel1">Select User:</label>
-                <select name="username" class="form-control mb-3" id="sel1">
-                    {% for user in users %}
-                    <option value={{user.username}}>{{user.username
-                        }}
-                    </option>
-                    {% endfor %}
-                </select>
-
-                <label for="comment">Tweet:</label>
-                <textarea name="tweet" class="form-control" rows="5"
-                          id="comment"></textarea>
-
-                <button type="submit" class="btn btn-primary mt-3">Submit
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div class="card">
-        <h5 class="card-header">Tweets</h5>
-        <div class="card-body">
-            <div class="list-group">
-                {% for tweet in tweets %}
-                    <a href="#"
-                       class="list-group-item list-group-item-action flex-column align-items-start">
-                        <p class="mb-1">{{ tweet.text }}</p>
-                        <small>{{ tweet.user.username }}</small>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
-
 {% endblock %}

@@ -1,4 +1,4 @@
 """Controllers package"""
 from . import home
-from . import users
-from . import tweets
+from . import user
+from . import tweet
