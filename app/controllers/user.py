@@ -1,15 +1,18 @@
-from flask import Blueprint, request, redirect, url_for
-
+from flask import Blueprint, redirect
+from app.forms.NewUserForm import NewUserForm
 from app.models.user import User
+from app.models.user import Tweet
+from flask import render_template
 
 blueprint = Blueprint('user', __name__)
 
 
-@blueprint.route('/user/new', methods=['POST'])
+@blueprint.route('/user/add', methods=['GET', 'POST'])
 def new_user():
-    if 'username' not in request.form:
-        return '', 500
+    form = NewUserForm()
 
-    User.add_user(request.form.get('username'))
-
-    return redirect(url_for('home.index'))
+    if form.validate_on_submit():
+        db_user = User.add_user(form.username.data)
+        Tweet.add_user_tweets(db_user)
+        return redirect('/')
+    return render_template('user/add.html', form=form)

@@ -4,6 +4,7 @@
       <w>endblock</w>
       <w>endfor</w>
       <w>errorhandlers</w>
+      <w>screenname</w>
       <w>sqlalchemy</w>
     </words>
   </dictionary>

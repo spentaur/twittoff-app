@@ -35,6 +35,7 @@ SQLAlchemy = "==1.3.0"
 Werkzeug = "==0.14.1"
 python-twitter = "*"
 tqdm = "*"
+flask-wtf = "*"
 
 [requires]
 python_version = "3.7"

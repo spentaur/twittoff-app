@@ -4,29 +4,17 @@
 
 {% block content %}
 
-<div class="card-columns my-5">
-    <div class="card">
-        <h5 class="card-header">Add User</h5>
-        <div class="card-body">
-            <form action="/user/new" method="post">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"
-                              id="basic-addon1">@</span>
-                    </div>
-                    <input type="text" class="form-control"
-                           name="username"
-                           placeholder="Username"
-                           aria-label="Username"
-                           aria-describedby="basic-addon1">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+<div class="my-5">
 
     <div class="card">
-        <h5 class="card-header">Users</h5>
+        <h5 class="d-flex align-items-center card-header">
+            <div class="flex-grow-1">
+                Users
+            </div>
+            <div class="pull-right">
+
+            </div>
+        </h5>
         <div class="card-body">
             <ul class="list-group">
                 {% for user in users %}

@@ -1,0 +1,40 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}Add User{% endblock %}
+
+{% block content %}
+
+<div class="my-5">
+    <div class="card">
+        <h5 class="card-header">Add User</h5>
+        <div class="card-body">
+            <form action="/user/add" method="post">
+                {{ form.csrf_token }}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"
+                              id="basic-addon1">@</span>
+                    </div>
+                    <input type="text" class="form-control"
+                           name="username"
+                           placeholder="Username"
+                           aria-label="Username"
+                           aria-describedby="basic-addon1">
+
+
+                </div>
+                {% if form.username.errors %}
+                <ul>
+                    {% for error in form.username.errors %}
+
+                    <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

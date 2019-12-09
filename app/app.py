@@ -35,7 +35,6 @@ def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(controllers.home.blueprint)
     app.register_blueprint(controllers.user.blueprint)
-    app.register_blueprint(controllers.tweet.blueprint)
     return None
 
 
