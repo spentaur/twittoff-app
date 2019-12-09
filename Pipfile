@@ -36,6 +36,7 @@ Werkzeug = ">=0.15.3"
 python-twitter = "*"
 tqdm = "*"
 flask-wtf = "*"
+timeago = "*"
 
 [requires]
 python_version = "3.7"

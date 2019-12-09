@@ -1,0 +1,66 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div class="my-5">
+    <div class="card">
+        <h5 class="d-flex align-items-center card-header">
+            <div class="flex-grow-1">
+                {{ user.username }}
+            </div>
+            <a href="/user/{{ user.username }}/delete" role="button"
+               class="btn pull-right btn-outline-danger btn-sm mr-2">
+                Delete User
+            </a>
+        </h5>
+
+        <div class="card-body">
+
+            <table class="table table-striped table-bordered">
+                <tbody>
+                <tr>
+                    <th class="text-nowrap" scope="row">Name</th>
+                    <td class="w-100">{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap" scope="row">Screen Name</th>
+                    <td class="w-100">{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap" scope="row">Tweet Count</th>
+                    <td class="w-100">{{ "{:,}".format(user.tweet_count)
+                        }}
+                    </td>
+
+                </tr>
+                <th class="text-nowrap" scope="row">Twitter Link</th>
+                <td
+                        class="w-100"><a
+                        href="https://twitter.com/{{user.username}}">https://twitter.com/{{user.username}}</a>
+                </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="card mb-5">
+    <h5 class="card-header">Tweets</h5>
+    <div class="card-body">
+        <div class="list-group">
+            {% for tweet in tweets %}
+            <a href="https://twitter.com/{{user.username}}/status/{{tweet.id}}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <p class="mb-1">{{ tweet.text }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

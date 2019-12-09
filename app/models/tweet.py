@@ -9,7 +9,8 @@ class Tweet(db.Model):
     embedding = db.Column(db.PickleType, nullable=False)
     user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'),
                         nullable=False)
-    user = db.relationship("User", backref=db.backref('tweets', lazy=True))
+    user = db.relationship("User", backref=db.backref('tweets',
+                                                      lazy='dynamic'))
 
     @staticmethod
     def add_user_tweets(user):

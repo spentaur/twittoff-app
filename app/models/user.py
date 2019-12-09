@@ -2,6 +2,7 @@ from app.extensions import db
 from app.api.twitter import TWITTER
 from .tweet import Tweet
 from sqlalchemy import func
+from sqlalchemy.orm import relationship
 
 
 class User(db.Model):
@@ -9,9 +10,9 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     name = db.Column(db.String(500), unique=True, nullable=False)
     tweet_count = db.Column(db.BigInteger(), nullable=False, default=0)
-    created_on = db.Column(db.DateTime, server_default=db.func.now())
-    updated_on = db.Column(db.DateTime, server_default=db.func.now(),
-                           server_onupdate=db.func.now())
+    created_on = db.Column(db.DateTime, default=db.func.now())
+    updated_on = db.Column(db.DateTime, default=db.func.now(),
+                           onupdate=db.func.now())
 
     @staticmethod
     def add_user(username):
@@ -42,4 +43,7 @@ class User(db.Model):
 
     @staticmethod
     def get_newest():
-        return User.query.order_by(User.created_on.desc()).limit(20).all()
+        return User.query.order_by(User.updated_on.desc()).limit(20).all()
+
+    def get_newest_tweets(self):
+        return self.tweets.limit(20)
