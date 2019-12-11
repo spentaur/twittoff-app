@@ -37,6 +37,12 @@ python-twitter = "*"
 tqdm = "*"
 flask-wtf = "*"
 timeago = "*"
+numpy = "*"
+scikit-learn = "*"
+ipykernel = "*"
+pandas = "*"
+skl2onnx = "*"
+onnxruntime = "*"
 
 [requires]
 python_version = "3.7"

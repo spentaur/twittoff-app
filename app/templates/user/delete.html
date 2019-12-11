@@ -1,0 +1,23 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}Delete {{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div class="my-5">
+    <div class="card">
+        <h5 class="card-header">Delete {{ user.username }}</h5>
+        <div class="card-body">
+            <form method="post">
+                {{ form.csrf_token }}
+                <div class="input-group mb-3">
+                    Are you sure you want to delete <b>&nbsp;{{ user.username
+                    }}&nbsp;</b> and all their tweets?
+                </div>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

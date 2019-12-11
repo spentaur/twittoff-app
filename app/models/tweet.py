@@ -10,10 +10,13 @@ class Tweet(db.Model):
     user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'),
                         nullable=False)
     user = db.relationship("User", backref=db.backref('tweets',
-                                                      lazy='dynamic'))
+                                                      lazy='dynamic',
+                                                      cascade="all, "
+                                                              "delete-orphan"))
 
     @staticmethod
     def add_user_tweets(user):
+        print(f"getting {user.username}'s tweets...")
         # get first 200 tweets
         timeline = TWITTER.user_timeline(user.username, count=200,
                                          exclude_replies=False,
@@ -48,13 +51,20 @@ class Tweet(db.Model):
         # update the user to have tweet count
         user.tweet_count = len(timeline)
 
+        print(f"got {len(timeline)} tweets from {user.username}'s timeline!")
+        print("\n")
+
         # embedding the tweets in big batches
+        print(f"embedding {user.username}'s tweets...")
         tweets = [status.full_text for status in timeline.values()]
         with BASILICA as c:
             embeddings = list(
                 c.embed_sentences(tweets, model="twitter"))
+        print("tweets embedded!")
+        print("\n")
 
         # adding all the tweets and embeddings to the db
+        print("adding tweets to db...")
         for status, embedding in zip(timeline.values(), embeddings):
             tweet_data = {
                 'id':        status.id,
@@ -64,6 +74,8 @@ class Tweet(db.Model):
             }
             db.session.add(Tweet(**tweet_data))
 
+        print("added tweets to db!")
+        print("\n")
         db.session.commit()
 
     @staticmethod

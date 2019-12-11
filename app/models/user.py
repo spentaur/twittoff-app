@@ -16,6 +16,7 @@ class User(db.Model):
 
     @staticmethod
     def add_user(username):
+        print(f"adding {username} to database...")
         # check if user already exists
         user = User.query.filter(
             func.lower(User.username) == func.lower(username)).first()
@@ -23,6 +24,7 @@ class User(db.Model):
         twitter_user = TWITTER.get_user(username)
 
         if user:
+
             # if user already exists, delete all their tweets
             # because i'm going to get them again
             Tweet.query.filter_by(user_id=user.id).delete()
@@ -38,6 +40,8 @@ class User(db.Model):
             db.session.add(user)
 
         db.session.commit()
+        print(f"{username} has been added!")
+        print("\n")
 
         return user
 

@@ -6,8 +6,10 @@ from wtforms import ValidationError
 
 
 def valid_screenname(form, field):
-    if not twitter_user_exists(field.data):
-        raise ValidationError('Not a valid screen name.')
+    users = field.data.split(",")
+    for user in users:
+        if not twitter_user_exists(user.strip()):
+            raise ValidationError('Not a valid screen name.')
 
 
 class NewUserForm(FlaskForm):

@@ -9,3 +9,12 @@
     }
 
 }
+
+.results tr:first-child {
+    font-weight:bold;
+}
+
+.results tr:not(:first-child) {
+    font-weight:200;
+    color:#aaa;
+}

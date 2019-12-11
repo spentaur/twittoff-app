@@ -34,4 +34,31 @@
     </div>
 </div>
 
+<div class="my-5">
+    <div class="card">
+        <h5 class="card-header">Predict User from Tweet</h5>
+        <div class="card-body">
+            <form action="/predict" method="post">
+                {{ form.csrf_token }}
+                <div class="input-group mb-3">
+                    <textarea type="text" class="form-control"
+                              name="tweet"
+                              placeholder="Tweet..."
+                              aria-label="Tweet"
+                              aria-describedby="basic-addon1">{% if form.tweet.data %}{{ form.tweet.data}}{% endif %}</textarea>
+                </div>
+                {% if form.tweet.errors %}
+                <ul>
+                    {% for error in form.tweet.errors %}
+
+                    <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
